@@ -206,7 +206,7 @@ fuel             | 845
 bench            | 672
 bank             | 657
 ```
-![alt text](/Users/aehsaei/Documents/DataAnalyst/Project_3/P3_Data_Wrangling/figure_2.png)
+![alt text](https://raw.githubusercontent.com/aehsaei/P3_Data_Wrangling/figure-update/figure_2.png)
 
 ### Fun Queries
 I did a couple of database queries based on things that I am interested in learning about the Denver / Boulder area. I really like Chipotle restaurants and they have their headquarters in Denver, CO. I was curious to see how many locations they had in the Denver / Boulder area, expecting a larger than average amount. I found there are 32 locations in my dataset. That's a lot!
@@ -257,7 +257,7 @@ Epaulet Mountain   | 4126
 Chiefs Head Peak   | 4121
 North Arapaho Peak | 4100
 ```
-![alt text](/Users/aehsaei/Documents/DataAnalyst/Project_3/P3_Data_Wrangling/figure_1.png)
+![alt text](https://raw.githubusercontent.com/aehsaei/P3_Data_Wrangling/figure-update/figure_1.png)
 
 ## Ideas For Additional Improvement
 The data has been cleaned and organized well enough for the intents and purposes of this project. However, there are some improvements that I would suggest going forward with more in-depth analysis of the OSM data. 
