@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>data_wrangling</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">OpenStreetMap Data Project</h1>
+
+<p>Data Analyst Nanodegree, P3 Data Wrangling OpenStreetMap Data, by Andrew Ehsaei</p>
+
+<h2 id="toc_1">Objective</h2>
+
+<p>The objective is to explore the OpenStreepMap (OSM) data on the Denver/Boulder area. I will begin by performing an audit on the data to discover errors and inconsistencies. Then I will clean up these issues and output a new version of the dataset. Next, I will create a database using the dataset and pose questions to learn about the area. I will use SQL to query the database and document my results. </p>
+
+<h2 id="toc_2">Map Area</h2>
+
+<ul>
+<li>Denver/Boulder, CO, United States</li>
+<li><a href="https://mapzen.com/data/metro-extracts/metro/denver-boulder_colorado/">MAPZEN</a></li>
+</ul>
+
+<h2 id="toc_3">Problems Encountered in the Map</h2>
+
+<p>I downloaded the Denver/Boulder OSM data and used a python code snippet provided in the project details to take a systematic sample of elements from your original OSM region. The result was a 2MB sampled region of the original OSM dataset. I did an audit on the street address data and noticed the following issues:
+- Street names are over­abbreviated <em>(“S Columbine St”)</em>
+- Street names are misspelled <em>(“South Holly Strret”)</em>
+- Street names gathered by TIGER system are inconsistent with other entries
+- Postal codes contain the state abbreviation <em>(&quot;CO 80027&quot;)</em>
+- Postal code values contain multiple postal codes *(&quot;80111:80121&quot;)
+- Postal codes are incorrect <em>(&quot;801111&quot;)</em></p>
+
+<h3 id="toc_4">Street names are overabbreviated and misspelled</h3>
+
+<p>I did an audit on the street names using a sample of the large dataset and noticed street name inconsistencies. One of the issues I spotted with street names was inconsistent abbreviation of the street name types (&quot;street, road, avenue, etc&quot;). To correct these inconsistencies I will loop through the words in the address and correct them according to a pre-defined mapping. Here is the correcting function I will use to loop through the words in an address:</p>
+
+<div><pre><code class="language-python">def fix_street_name(address, mapping):
+    words = address.split()
+    for w in range(len(words)):
+        if words[w] in mapping:
+            # Don&#39;t update &#39;Apartment E&#39; to &#39;Apartment East&#39;
+            if words[w-1].lower() in [ &#39;apartment&#39;, &#39;apt&#39;, &#39;building&#39;, &#39;suite&#39;, &#39;ste.&#39;, &#39;ste&#39;]:
+                continue
+            else:
+                words[w] = mapping[words[w]]
+                address = &quot; &quot;.join(words)
+    return address</code></pre></div>
+
+<h3 id="toc_5">Street names gathered by TIGER system are inconsistent with other entries</h3>
+
+<p>I found that there are data entries from the Topologically Integrated Geographic Encoding and Referencing system (TIGER) that do not follow the same address format as other entries. The TIGER address data is separated into multiple tags. For example:</p>
+
+<div><pre><code class="language-python">    &lt;tag k=&quot;tiger:name_base&quot; v=&quot;Race&quot; /&gt;
+    &lt;tag k=&quot;tiger:name_type&quot; v=&quot;St&quot; /&gt;
+    &lt;tag k=&quot;tiger:name_direction_prefix&quot; v=&quot;S&quot; /&gt;</code></pre></div>
+
+<p>To achieve a consistent format, I have processed the TIGER data and combined the address data into a single tag. The multiple tags are combined in the following order:</p>
+
+<ol>
+<li>name<em>direction</em>prefix</li>
+<li>name_base</li>
+<li>name_type</li>
+</ol>
+
+<h3 id="toc_6">Postal codes contain the state abbreviation</h3>
+
+<p>I found inconsistencies with the postal code entries. Some entries followed a standard 5 digit postal code format, and some followed the full 9 digit postal code (ZIP+4) format. Also, I noticed a format that starts with the state abbreviation &quot;CO&quot; before the postal code and I decided to clean these up by removing the state abbreviation. An example of this is the following: &quot;CO 80214&quot; abd &quot;CO80214.&quot; I first start by removing whitespace characters from the postal code, then I have a series of conditionals to format the postal code appropriately. </p>
+
+<p>Here is a code snippet of how I clean these postal codes:</p>
+
+<div><pre><code class="language-python">    elif (len(postcode) == 7
+          and postcode[:2] == &quot;CO&quot;
+          and is_postcode_valid(postcode[2:])):
+
+        # Correct zip code in format &quot;CO80214&quot;
+        item[&#39;value&#39;] = postcode[2:]
+
+    elif (len(postcode) == 14
+          and postcode[:9] == &quot;Golden,CO&quot;
+          and is_postcode_valid(postcode[9:])):
+
+        # Correct zip code in format &quot;Golden, CO 80401&quot;
+        item[&#39;value&#39;] = postcode[9:]</code></pre></div>
+
+<h3 id="toc_7">Postal code values contain multiple postal codes</h3>
+
+<p>I also found entries that contained multiple postal codes in a single tag. I saw two types of formats for listing multiple postal codes. One format uses a semicolon &quot;;&quot; to list postal codes explicitly. The other format uses a colon &quot;:&quot; to indicate a range of postal codes. I handled both of these cases by breaking out the postal codes into separate tags. Here is a code snippet showing the conditionals that handle these cases:</p>
+
+<div><pre><code class="language-python">    elif (&quot;;&quot; in postcode):
+
+        # Add all valid postalcode values if multiples listed
+        for new_postcode in postcode.split(&#39;;&#39;):
+            new_tag = item.copy()
+            new_tag[&#39;value&#39;] = new_postcode
+            if(is_postcode_valid(new_postcode)):
+                list_of_tags.append(new_tag)
+        list_of_tags.remove(item)
+
+    elif (&quot;:&quot; in postcode):
+
+        # Add all valid postalcode values if range listed
+        for new_postcode in range(int(postcode.split(&#39;:&#39;)[0]), int(postcode.split(&#39;:&#39;)[1])):
+            new_tag = item.copy()
+            new_tag[&#39;value&#39;] = str(new_postcode)
+            if (is_postcode_valid(str(new_postcode))):
+                list_of_tags.append(new_tag)
+        list_of_tags.remove(item)</code></pre></div>
+
+<h3 id="toc_8">Postal codes are incorrect</h3>
+
+<p>I found a few postal code entries that had an incorrect number of digits or did not contain any digits. Here are the postal codes that did not match any of my expected formats:</p>
+
+<div><pre><code class="language-python">Bad postcode: 1800
+Bad postcode: 6210
+Bad postcode: CO
+Bad postcode: HighlandsRanch,
+Bad postcode: CO
+Bad postcode: 801112
+Bad postcode: 1800
+Bad postcode: 6210
+Bad postcode: 801112
+Bad postcode: 801111
+Bad postcode: 801111
+Bad postcode: CO
+Bad postcode: 802377
+Bad postcode: 8023</code></pre></div>
+
+<p>I decided to eliminate these entries from my dataset and not make a guess at the intended postal code.</p>
+
+<h2 id="toc_9">Overview of the data</h2>
+
+<p>The Open Street Map data used in this analysis was downloaded from MAPZEN and contains the map data for the Denver / Boulder area. The OSM file format is an XML file type specific to OpenStreetMap. The original file was very large (700+MB) so I used a Python script to generate a sample of the large dataset. This file was generated by looping through the large dataset (“denver-boulder<em>colorado.osm) and writing out a portion of the data to a new file (“denver-boulder</em>colorado.osm). The reduced-scope dataset was much more manageable and used for bringup of the Python and SQL code. The large OSM dataset was analyzed and cleaned using Python, then partitioned into nodes, node<em>tags, ways, way</em>nodes, and way<em>tags and written out to separate CSV files. I used SQL to create a database (denver</em>osm.db) containing separate tables for each of the partitioned data within each CSV file. </p>
+
+<h3 id="toc_10">Data Files</h3>
+
+<div><pre><code class="language-none">740M  denver-boulder_colorado.osm
+1.9M  denver-boulder_colorado_small.osm
+527M  denver_osm.db
+286M  nodes.csv
+9.3M  node_tags.csv
+92M   way_nodes.csv
+43M   way_tags.csv
+23M   ways.csv</code></pre></div>
+
+<h3 id="toc_11">Database Queries</h3>
+
+<p>Once the database and tables were created, I used SQL to perform queries on the data. Here are some queries I performed on the database.</p>
+
+<h4 id="toc_12">Most Common Street Names</h4>
+
+<div><pre><code class="language-sql">sqlite&gt; SELECT tags.value, COUNT(*) as count  
+    FROM (SELECT * FROM node_tags UNION ALL SELECT * FROM way_tags) tags 
+    WHERE tags.key=&#39;street&#39; GROUP BY tags.value ORDER BY count DESC LIMIT 5;
+
+STREET NAME             | NUMBER OF ADDRESSES WITH STREET NAME
+Washington Street       | 1247
+Lipan Street            | 917
+Union Pacific Railroad  | 770
+Federal Boulevard       | 765
+West 32nd Avenue        | 759</code></pre></div>
+
+<h4 id="toc_13">Most Common Postal Codes</h4>
+
+<div><pre><code class="language-sql">sqlite&gt; SELECT tags.value, COUNT(*) as count 
+    FROM (SELECT * FROM node_tags UNION ALL SELECT * FROM way_tags) tags
+    WHERE tags.key=&#39;postcode&#39; GROUP BY tags.value
+    ORDER BY count DESC LIMIT 5;
+
+POSTAL CODE | NUMBER OF ADDRESSES WITH POSTAL CODE
+80211       | 14321
+80026       | 8599
+80205       | 6027
+80204       | 5631
+80212       | 4797</code></pre></div>
+
+<h4 id="toc_14">Top Contributing Users</h4>
+
+<div><pre><code class="language-sql">sqlite&gt; SELECT user, COUNT(*) as count 
+    FROM nodes GROUP BY uid
+    ORDER BY count DESC LIMIT 5;
+
+USER NAME         | NUMBER OF CONTRIBUTIONS
+Your Village Maps | 587164
+chachafish        | 408096
+woodpeck_fixbot   | 350885
+GPS_dr            | 306036
+DavidJDBA         | 186974</code></pre></div>
+
+<h4 id="toc_15">Most Types Of Places Of Worship</h4>
+
+<div><pre><code class="language-sql">sqlite&gt; SELECT tags.value, COUNT(*) as count 
+    FROM (SELECT * FROM node_tags UNION ALL SELECT * FROM way_tags) tags
+    WHERE tags.key=&#39;religion&#39; GROUP BY tags.value
+    ORDER BY count DESC LIMIT 10;
+
+RELIGIOUS DENOMINATION | PLACES OF WORSHIP
+christian              | 1065
+jewish                 | 16
+buddhist               | 12
+muslim                 | 11
+unitarian_universalist | 3</code></pre></div>
+
+<h4 id="toc_16">Top City Amenities</h4>
+
+<div><pre><code class="language-sql">sqlite&gt; SELECT tags.value, COUNT(*) as count 
+    FROM (SELECT * FROM node_tags UNION ALL SELECT * FROM way_tags) tags
+    WHERE tags.key=&#39;amenity&#39;
+    GROUP BY tags.value ORDER BY count DESC LIMIT 10;
+
+AMENITY          | COUNT
+parking          | 28799
+restaurant       | 2252
+school           | 2246
+place_of_worship | 1191
+fast_food        | 1156
+shelter          | 908
+bicycle_parking  | 896
+fuel             | 845
+bench            | 672
+bank             | 657</code></pre></div>
+
+<p><img src="/Users/aehsaei/Documents/DataAnalyst/Project_3/P3_Data_Wrangling/figure_2.png" alt="alt text"></p>
+
+<h3 id="toc_17">Fun Queries</h3>
+
+<p>I did a couple of database queries based on things that I am interested in learning about the Denver / Boulder area. I really like Chipotle restaurants and they have their headquarters in Denver, CO. I was curious to see how many locations they had in the Denver / Boulder area, expecting a larger than average amount. I found there are 32 locations in my dataset. That&#39;s a lot!</p>
+
+<p>I also love spending time hiking and snowboarding in the mountains. I was curious about the natural features and the tallest mountain peaks.</p>
+
+<h4 id="toc_18">Top Natural Features</h4>
+
+<div><pre><code class="language-sql">sqlite&gt; SELECT value, COUNT(*) as count
+    FROM node_tags WHERE key=&#39;natural&#39;
+    GROUP BY value 
+    ORDER BY count DESC LIMIT 10;
+
+NATURAL FEATURE | COUNT
+tree            | 28381
+peak            | 388
+saddle          | 13
+cliff           | 10
+street_lamp     | 10
+glacier         | 7
+rock            | 4
+waterfall       | 4
+bay             | 2
+spring          | 2</code></pre></div>
+
+<h4 id="toc_19">Highest Mountain Peaks</h4>
+
+<div><pre><code class="language-sql">sqlite&gt; SELECT id, value
+        FROM node_tags
+        WHERE key=&#39;name&#39; AND
+        id IN ( SELECT id
+                FROM node_tags
+                WHERE key=&#39;ele&#39; AND
+                id IN ( SELECT id
+                        FROM node_tags
+                        WHERE  key=&#39;natural&#39; AND value=&#39;peak&#39;)
+                ORDER BY value DESC LIMIT 10); 
+
+PEAK               | ELEVATION (METERS)
+Longs Peak         | 4340
+Mount Evans        | 4335
+Mount Bierstadt    | 4282
+Mount Meeker       | 4227
+Mount Spalding     | 4222
+Gray Wolf Mountain | 4148
+Rosalie Peak       | 4138
+Epaulet Mountain   | 4126
+Chiefs Head Peak   | 4121
+North Arapaho Peak | 4100</code></pre></div>
+
+<p><img src="/Users/aehsaei/Documents/DataAnalyst/Project_3/P3_Data_Wrangling/figure_1.png" alt="alt text"></p>
+
+<h2 id="toc_20">Ideas For Additional Improvement</h2>
+
+<p>The data has been cleaned and organized well enough for the intents and purposes of this project. However, there are some improvements that I would suggest going forward with more in-depth analysis of the OSM data. </p>
+
+<p>I think the schema is currently very simple. There are very large tables to store various types of OSM ways and nodes. These could be partitioned into smaller tables for each of the major categories, for example a separate table for restaurants. The tables would all link to each other using secondary keys. This would greatly reduce the complexity of the SQL query code to access and search through the data. However, the complexity would increase in the schema definition and the code to populate the tables.</p>
+
+<p>Another improvement I suggest is to streamline the processing of raw OSM data. Currently, the processing of the OSM data is static and requires many stages to be done by hand. It would be great if the structure was dynamic and the database generation could automatically be updated when updates were made to the OSM data. This would be beneficial for quickly responding to changes in the OSM data due to new developments or addressing changes. </p>
+
+<p>The last suggestion I have is to improve the sanity checks within the cleaning code as well as the database structure. I am sure there are many spelling mistakes that still exist in the OSM data. A more thorough spell checker could be implemented to correct these issues. There could be some additional sanity checks on the addresses in the data as well. Each component of the addresses could be checked to make sure the value is within an expected bound. The benefit of adding these checks are that the data is cleaned more thoroughly, but the downside is the code would have to hold more verified data to implement the checks. The database structure could also catch redundancies and inconsistencies with the addresses. Each full address should be a unique location. With each of these checks, the code will have to contain more expected information about the particular area and therefore makes the code very location specific. The code wouldn&#39;t be scalable either, the checks would be invalid if the area data were expanded beyond the current bounds.</p>
+
+<p>I think the analysis conducted worked very well for the scope of work of this project. It was very rewarding to go through the process of analyzing the OSM data and creating this report.</p>
+
+
+
+
+</body>
+
+</html>
